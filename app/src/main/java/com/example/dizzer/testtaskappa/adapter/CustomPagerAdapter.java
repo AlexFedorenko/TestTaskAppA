@@ -16,7 +16,7 @@ import com.example.dizzer.testtaskappa.fragments.TestTabFragment;
 
 public class CustomPagerAdapter extends FragmentStatePagerAdapter {
 
-    Context context;
+    private Context context;
 
     public CustomPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
