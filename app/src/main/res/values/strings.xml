@@ -4,4 +4,6 @@
     <string name="ok">Ok</string>
     <string name="history_tab_title">History</string>
     <string name="test_tab_title">Test</string>
+    <string name="link_address">Link address :</string>
+    <string name="date">Date :</string>
 </resources>
