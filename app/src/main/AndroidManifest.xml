@@ -17,6 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:authorities="com.example.dizzer.testtaskappa.provider"
+            android:name=".provider.CustomProvider"
+            android:exported="true"
+            android:writePermission="com.example.dizzer.testtaskappa.provider.write.permission"/>
     </application>
 
 </manifest>
