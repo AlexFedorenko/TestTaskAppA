@@ -22,7 +22,7 @@ public class TestTabFragment extends Fragment implements View.OnClickListener {
     private Button buttonOk;
     private EditText edLink;
 
-    private String linkAdress;
+    private String linkAddress;
 
     @Nullable
     @Override
@@ -36,10 +36,10 @@ public class TestTabFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        linkAdress = edLink.getText().toString();
+        linkAddress = edLink.getText().toString();
         Intent intent = new Intent("com.example.dizzer.testtaskprojectb.intent.filter.for.appA");
         intent.putExtra(CustomConstant.INTENT_CODE,CustomConstant.TEST_FRAGMENT);
-        intent.putExtra(CustomConstant.INTENT_LINK,linkAdress);
+        intent.putExtra(CustomConstant.INTENT_LINK, linkAddress);
         startActivity(intent);
     }
 }

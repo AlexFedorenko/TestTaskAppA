@@ -111,7 +111,7 @@ public class CustomProvider extends ContentProvider {
                 + IMAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + IMAGE_LINK + " TEXT,"
                 + IMAGE_STATUS + " INTEGER,"
-                + IMAGE_TIME + " DATE)";
+                + IMAGE_TIME + " INTEGER)";
 
         private static final String SQL_DROP_TABLE_IMAGE = "DROP TABLE " + IMAGE_TABLE_NAME;
 
