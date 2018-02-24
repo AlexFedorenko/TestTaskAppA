@@ -86,12 +86,43 @@ public class CustomProvider extends ContentProvider {
 
     @Override
     public int delete(@NonNull Uri uri, @Nullable String s, @Nullable String[] strings) {
-        return 0;
+        SQLiteDatabase database = mCustomDB.getWritableDatabase();
+        int mUriMather = uriMatcher.match(uri);
+        int resultDelete = -1;
+        Context context = getContext();
+        assert context != null;
+        switch (mUriMather) {
+            case IMAGE_ID:
+                s = "_id = ?";
+                int idDelete = Integer.parseInt(uri.getLastPathSegment());
+                strings = new String[]{String.valueOf(idDelete)};
+                resultDelete = database.delete(CustomDB.IMAGE_TABLE_NAME, s, strings);
+                context.getContentResolver().notifyChange(uri, null, false);
+                return resultDelete;
+            case IMAGE:
+                resultDelete = database.delete(CustomDB.IMAGE_TABLE_NAME, s, strings);
+                context.getContentResolver().notifyChange(uri, null, false);
+                return resultDelete;
+            default:
+                return resultDelete;
+        }
     }
 
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String s, @Nullable String[] strings) {
-        return 0;
+        SQLiteDatabase database = mCustomDB.getWritableDatabase();
+        int mUriMather = uriMatcher.match(uri);
+        int resultUpdate = -1;
+        Context context = getContext();
+        assert context != null;
+        switch (mUriMather) {
+            case IMAGE:
+                resultUpdate = database.update(CustomDB.IMAGE_TABLE_NAME, contentValues, s, strings);
+                context.getContentResolver().notifyChange(uri, null, false);
+                return resultUpdate;
+            default:
+                return resultUpdate;
+        }
     }
 
     private static class CustomDB extends SQLiteOpenHelper{

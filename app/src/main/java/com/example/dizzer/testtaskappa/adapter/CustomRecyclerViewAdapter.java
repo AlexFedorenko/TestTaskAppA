@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.dizzer.testtaskappa.R;
@@ -22,10 +23,16 @@ import java.util.List;
 
 public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecyclerViewAdapter.ViewHolder> {
 
-    List<LinkModel> linkModels = new ArrayList<>();
+    private List<LinkModel> linkModels = new ArrayList<>();
+    private OnItemClickListener mOnItemClickListener;
 
-    public CustomRecyclerViewAdapter(List<LinkModel> linkModels) {
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    public CustomRecyclerViewAdapter(List<LinkModel> linkModels, OnItemClickListener mOnItemClickListener) {
         this.linkModels = linkModels;
+        this.mOnItemClickListener = mOnItemClickListener;
     }
 
     @Override
@@ -37,7 +44,7 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Date date = new Date(linkModels.get(position).getTime());
-        SimpleDateFormat formatForDateNow = new SimpleDateFormat("E yyyy.MM.dd 'и время' hh:mm:ss a zzz");
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("E yyyy.MM.dd 'time :' hh:mm:ss a zzz");
         int status = linkModels.get(position).getStatus();
 
         holder.textViewDate.setText(formatForDateNow.format(date));
@@ -61,7 +68,7 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
         return linkModels.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView textViewLink;
         private TextView textViewDate;
         private View view;
@@ -71,6 +78,13 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
             view = itemView;
             textViewLink = (TextView) itemView.findViewById(R.id.rvi_tv_link_address);
             textViewDate = (TextView) itemView.findViewById(R.id.rvi_tv_link_date);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int itemPosition = getLayoutPosition();
+            mOnItemClickListener.onItemClick(itemPosition);
         }
     }
 }

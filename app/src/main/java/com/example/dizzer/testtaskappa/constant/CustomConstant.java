@@ -9,6 +9,7 @@ public class CustomConstant {
     public static final String INTENT_LINK = "link";
     public static final String INTENT_STATUS = "status";
     public static final String INTENT_DATE = "date";
+    public static final String INTENT_ID = "id";
 
     public static final int TEST_FRAGMENT = 1;
     public static final int HISTORY_FRAGMENT = 2;

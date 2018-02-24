@@ -18,6 +18,10 @@ public class LinkModel {
         this.time = time;
     }
 
+    public long getLinkID() {
+        return linkID;
+    }
+
     public String getLink() {
         return link;
     }
