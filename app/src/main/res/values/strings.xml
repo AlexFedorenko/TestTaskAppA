@@ -6,4 +6,6 @@
     <string name="test_tab_title">Test</string>
     <string name="link_address">Link address :</string>
     <string name="date">Date :</string>
+    <string name="sort_by_status">Sort by status</string>
+    <string name="sort_by_date">Sort by date</string>
 </resources>
